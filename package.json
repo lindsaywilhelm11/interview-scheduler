@@ -46,5 +46,18 @@
       "<rootDir>/node_modules/",
       "<rootDir>/.git/"
     ]
-  }
+  },
+  "description": "## Setup",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lindsaywilhelm11/interview-scheduler.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lindsaywilhelm11/interview-scheduler/issues"
+  },
+  "homepage": "https://github.com/lindsaywilhelm11/interview-scheduler#readme"
 }
