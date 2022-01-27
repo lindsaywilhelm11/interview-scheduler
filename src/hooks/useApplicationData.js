@@ -11,9 +11,32 @@ const [state, setState] = useState({
 
   const setDay = day => setState({ ...state, day });
 
-  const bookInterview = (id, interview) => {
-    console.log(id, interview);
+  const getSpotsForDay = (day, appointments) => {
+    // Iterate through the day's appt id's
+    // Count how many have null interview
+    let spots = 0;
+    for (const id of day.appointments) {
+      const appointment = appointments[id];
+      if (!appointment.interview) {
+        spots++;
+      }
+    }
+    return spots;
+  }
 
+  const updateSpots = function (state, appointments) {
+    // Get the day object
+      const dayObj = state.days.find(day => day.name === state.day);
+      const spots = getSpotsForDay(dayObj, appointments)
+      const day = {...dayObj, spots}
+      const newDays = state.days.map(d => d.name === state.day ? day : d);
+  
+    // Return days array
+  
+        return newDays;
+  }
+
+  const bookInterview = (id, interview) => {
       const appointment = {
         ...state.appointments[id],
         interview: { ...interview }
@@ -27,13 +50,11 @@ const [state, setState] = useState({
         axios.put(`/api/appointments/${id}`, {
         interview
       })
-        .then(() => setState({
-        ...state,
-        appointments
+      .then(() => {
+        updateSpots(state, appointments);
       })
-    ))
+    )
   }
-
 
   const cancelInterview = (id) => {
     const appointment = {
@@ -46,11 +67,10 @@ const [state, setState] = useState({
   }
     return (
       axios.delete(`/api/appointments/${id}`)
-      .then(() => setState({
-        ...state,
-        appointments
+      .then(() => {
+        updateSpots(state, appointments);
       })
-    ))
+    )
   }
 
   useEffect(() => {
@@ -66,6 +86,7 @@ const [state, setState] = useState({
       console.log(all)
     });
   }, []); 
+
 
   return { state, setDay, bookInterview, cancelInterview }
 }

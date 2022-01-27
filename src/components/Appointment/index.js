@@ -48,6 +48,7 @@ export default function Appointment(props) {
     const { mode, transition, back } = useVisualMode(
         props.interview ? SHOW : EMPTY
       );
+
     return (
         <article className="appointment">
             <Header time={props.time}/>
@@ -56,7 +57,7 @@ export default function Appointment(props) {
             {mode === SAVING && <Status message="Saving..." /> }
             {mode === DELETING && <Status message="Deleting..."/>}
             {mode === CONFIRM && <Confirm message="Are you sure you want to delete this appointment?" onConfirm={deleteInterview} onCancel={() => back(SHOW)}/>}
-            {mode === EDIT && <Form onSave={save} onCancel={() => back(SHOW)} name={props.student} interviewer={props.interview} interviewers={props.interviewers} />}
+            {mode === EDIT && <Form onSave={save} onCancel={() => back(SHOW)} name={props.interview.student} interviewer={props.interview.interviewer.id} interviewers={props.interviewers} />}
             {mode === SHOW && (
                 <Show
                     id={props.id}
