@@ -1,5 +1,16 @@
 # Interview Scheduler
 
+This interview scheduler app was made by Lindsay Wilhelm for the Lighthouse Labs Web Development Bootcamp. It was built using React, Axios, and PostgreSQL and tested with Jest and Cypress.
+
+## Final Product
+
+!["Add Appointment"]()
+
+!["Delete Appointment"]()
+
+!["Edit Appointment"]()
+
+
 ## Setup
 
 Install dependencies with `npm install`.
@@ -21,3 +32,4 @@ npm test
 ```sh
 npm run storybook
 ```
+

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import InterviewerList from 'components/InterviewerList'
-import Button from 'components/Button'
+import InterviewerList from '../InterviewerList';
+import Button from '../Button';
 
 export default function Form(props) {
     const [name, setName] = useState(props.name || "");
@@ -30,15 +30,15 @@ export default function Form(props) {
     return (
         <main className="appointment__card appointment__card--create">
             <section className="appointment__card-left">
-                <form autoComplete="off" onSubmit={event => event.preventDefault()}>
+                <form autoComplete="off" onSubmit={e => e.preventDefault()}>
                 <input
                     className="appointment__create-input text--semi-bold"
                     name="name"
                     type="text"
                     placeholder="Enter Student Name"
                     value={name}
-                    onChange={event => {
-                        setName(event.target.value);
+                    onChange={e => {
+                        setName(e.target.value);
                     }}
                     data-testid="student-name-input"
                     />

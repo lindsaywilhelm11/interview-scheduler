@@ -1,11 +1,12 @@
 import React from 'react'
-import "components/Appointment/styles.scss";
 import Header from './Header';
 import Show from './Show';
 import Empty from './Empty';
 import Form from './Form';
 import Status from './Status';
 import Confirm from './Confirm';
+import Error from './Error';
+import "components/Appointment/styles.scss";
 import useVisualMode from "hooks/useVisualMode";
 
 export default function Appointment(props) {
@@ -53,11 +54,13 @@ export default function Appointment(props) {
         <article className="appointment">
             <Header time={props.time}/>
             {mode === EMPTY && <Empty onAdd={() => transition(CREATE)} />}
-            {mode === CREATE && <Form onSave={save} interviewers={props.interviewers} onCancel={() => back(SHOW)}/>}
+            {mode === CREATE && <Form interviewers={props.interviewers} onSave={save} onCancel={() => back()}/>}
             {mode === SAVING && <Status message="Saving..." /> }
             {mode === DELETING && <Status message="Deleting..."/>}
-            {mode === CONFIRM && <Confirm message="Are you sure you want to delete this appointment?" onConfirm={deleteInterview} onCancel={() => back(SHOW)}/>}
-            {mode === EDIT && <Form onSave={save} onCancel={() => back(SHOW)} name={props.interview.student} interviewer={props.interview.interviewer.id} interviewers={props.interviewers} />}
+            {mode === CONFIRM && <Confirm message="Are you sure you want to delete this appointment?" onConfirm={deleteInterview} onCancel={() => back()}/>}
+            {mode === EDIT && <Form onSave={save} onCancel={() => back()} name={props.interview.student} interviewer={props.interview.interviewer.id} interviewers={props.interviewers} />}
+            {mode === ERROR_SAVE && <Error message="Could not save your appointment..." onClose={() => back(SHOW)} />}
+            {mode === ERROR_DELETE && <Error message="Could not delete your appointment..." onClose={() => back(SHOW)}/>}
             {mode === SHOW && (
                 <Show
                     id={props.id}

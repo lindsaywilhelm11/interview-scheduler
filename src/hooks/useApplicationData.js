@@ -48,10 +48,10 @@ const [state, setState] = useState({
 
       return (
         axios.put(`/api/appointments/${id}`, {
-        interview
+        interview: interview
       })
       .then(() => {
-        updateSpots(state, appointments);
+        updateSpots(state, appointments)
       })
     )
   }
@@ -68,7 +68,7 @@ const [state, setState] = useState({
     return (
       axios.delete(`/api/appointments/${id}`)
       .then(() => {
-        updateSpots(state, appointments);
+        updateSpots(state, appointments)
       })
     )
   }
@@ -83,7 +83,6 @@ const [state, setState] = useState({
       interviewers
     ]).then((all) => {
       setState(prev => ({...prev, days: all[0].data, appointments: all[1].data, interviewers: all[2].data }));
-      console.log(all)
     });
   }, []); 
 
