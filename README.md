@@ -4,11 +4,11 @@ This interview scheduler app was made by Lindsay Wilhelm for the Lighthouse Labs
 
 ## Final Product
 
-![https://github.com/lindsaywilhelm11/interview-scheduler/blob/master/docs/add-appointment.png?raw=true]()
+!["https://github.com/lindsaywilhelm11/interview-scheduler/blob/master/docs/add-appointment.png?raw=true"]()
 
-![https://github.com/lindsaywilhelm11/interview-scheduler/blob/master/docs/delete-appointment.png?raw=true]()
+!["https://github.com/lindsaywilhelm11/interview-scheduler/blob/master/docs/delete-appointment.png?raw=true"]()
 
-![https://github.com/lindsaywilhelm11/interview-scheduler/blob/master/docs/edit-appointment.png?raw=true]()
+!["https://github.com/lindsaywilhelm11/interview-scheduler/blob/master/docs/edit-appointment.png?raw=true"]()
 
 
 ## Setup
