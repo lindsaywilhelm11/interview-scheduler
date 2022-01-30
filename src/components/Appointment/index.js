@@ -42,7 +42,7 @@ export default function Appointment(props) {
         transition(DELETING, true);
         props
          .cancelInterview(props.id)
-         .then(() => transition(EMPTY))
+         .then(transition(EMPTY))
          .catch(error => transition(ERROR_DELETE, true));
        }
 
@@ -54,13 +54,13 @@ export default function Appointment(props) {
         <article className="appointment">
             <Header time={props.time}/>
             {mode === EMPTY && <Empty onAdd={() => transition(CREATE)} />}
-            {mode === CREATE && <Form interviewers={props.interviewers} onSave={save} onCancel={() => back()}/>}
+            {mode === CREATE && <Form interviewers={props.interviewers} onSave={save} onCancel={back}/>}
             {mode === SAVING && <Status message="Saving..." /> }
             {mode === DELETING && <Status message="Deleting..."/>}
-            {mode === CONFIRM && <Confirm message="Are you sure you want to delete this appointment?" onConfirm={deleteInterview} onCancel={() => back()}/>}
-            {mode === EDIT && <Form onSave={save} onCancel={() => back()} name={props.interview.student} interviewer={props.interview.interviewer.id} interviewers={props.interviewers} />}
-            {mode === ERROR_SAVE && <Error message="Could not save your appointment..." onClose={() => back(SHOW)} />}
-            {mode === ERROR_DELETE && <Error message="Could not delete your appointment..." onClose={() => back(SHOW)}/>}
+            {mode === CONFIRM && <Confirm message="Are you sure you want to delete this appointment?" onConfirm={deleteInterview} onCancel={back}/>}
+            {mode === EDIT && <Form onSave={save} onCancel={back} name={props.interview.student} interviewer={props.interview.interviewer.id} interviewers={props.interviewers} />}
+            {mode === ERROR_SAVE && <Error message="Could not save your appointment..." onClose={back} />}
+            {mode === ERROR_DELETE && <Error message="Could not delete your appointment..." onClose={back}/>}
             {mode === SHOW && (
                 <Show
                     id={props.id}

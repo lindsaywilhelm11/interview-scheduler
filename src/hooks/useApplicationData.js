@@ -51,7 +51,12 @@ const [state, setState] = useState({
         interview: interview
       })
       .then(() => {
-        updateSpots(state, appointments)
+        const newState = {
+          ...state,
+          appointments
+        }
+        const updatedDays = updateSpots(newState, appointments)
+        setState(prev => ({ ...prev, appointments, updatedDays })) 
       })
     )
   }
@@ -68,7 +73,12 @@ const [state, setState] = useState({
     return (
       axios.delete(`/api/appointments/${id}`)
       .then(() => {
-        updateSpots(state, appointments)
+        const newState = {
+          ...state,
+          appointments
+        }
+        updateSpots(newState, appointments)
+        setState({ ...state, appointments, newState })
       })
     )
   }
