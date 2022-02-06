@@ -15,6 +15,10 @@ This interview scheduler app was made by Lindsay Wilhelm for the Lighthouse Labs
 
 Install dependencies with `npm install`.
 
+## Setting up the database
+
+Click [here](https://github.com/lighthouse-labs/scheduler-api) and follow the instructions to get the database running.
+
 ## Running Webpack Development Server
 
 ```sh
