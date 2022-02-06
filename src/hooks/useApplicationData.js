@@ -41,22 +41,19 @@ const [state, setState] = useState({
         ...state.appointments[id],
         interview: { ...interview }
       };
+      
       const appointments = {
         ...state.appointments,
         [id]: appointment
       };
 
+      const updatedDays = updateSpots(state, appointments)
+      const newState = { ...state, appointments }
+
       return (
-        axios.put(`/api/appointments/${id}`, {
-        interview: interview
-      })
+        axios.put(`/api/appointments/${id}`, appointment)
       .then(() => {
-        const newState = {
-          ...state,
-          appointments
-        }
-        const updatedDays = updateSpots(newState, appointments)
-        setState(prev => ({ ...prev, appointments, updatedDays })) 
+        setState({ ...newState, days: updatedDays })
       })
     )
   }
@@ -70,15 +67,14 @@ const [state, setState] = useState({
       ...state.appointments,
       [id]: appointment
   }
+
+  const updatedDays = updateSpots(state, appointments)
+      const newState = { ...state, appointments }
+
     return (
-      axios.delete(`/api/appointments/${id}`)
+      axios.delete(`/api/appointments/${id}`, appointment)
       .then(() => {
-        const newState = {
-          ...state,
-          appointments
-        }
-        updateSpots(newState, appointments)
-        setState({ ...state, appointments, newState })
+        setState({ ...newState, days: updatedDays })
       })
     )
   }
